@@ -55,11 +55,18 @@ __attribute__((constructor)) static void JZ_Inject(void) {
 }
 
 - (void)jz_viewDidLoad {
-    NSAssert(!self.delegate, @"Set delegate should be invoked when viewDidLoad");
-    self.delegate = nil;
+//    NSAssert(!self.delegate, @"Set delegate should be invoked when viewDidLoad");
+//    self.delegate = nil;
+//    [self.interactivePopGestureRecognizer setValue:@NO forKey:@"canPanVertically"];
+//    self.interactivePopGestureRecognizer.delegate = self.jz_navigationDelegate;
+//    [self jz_viewDidLoad];
+    
+    //源代码会报错
+    self.delegate = self.delegate;
     [self.interactivePopGestureRecognizer setValue:@NO forKey:@"canPanVertically"];
     self.interactivePopGestureRecognizer.delegate = self.jz_navigationDelegate;
     [self jz_viewDidLoad];
+
 }
 
 - (void)jz_setDelegate:(NSObject <UINavigationControllerDelegate> *)delegate {
