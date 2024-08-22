@@ -44,6 +44,11 @@ JZExtensionBarImplementation
 }
 
 - (UIView *)jz_backgroundView {
+    if (@available(iOS 13, *)) {
+        UIView * barBackgroundView = self.subviews.firstObject;
+        return  barBackgroundView?:[self valueForKeyPath:@"_backgroundView"];
+    }
+    
     if (@available(iOS 10, *)) {
         return [self valueForKeyPath:@"_backgroundView._backgroundEffectView"];
     }
