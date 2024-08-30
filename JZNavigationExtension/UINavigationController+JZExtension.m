@@ -229,6 +229,11 @@ __attribute__((constructor)) static void JZ_Inject(void) {
         _previousVisibleViewController = [self.topViewController.transitionCoordinator viewControllerForKey:UITransitionContextFromViewControllerKey];
         self.jz_previousVisibleViewController = _previousVisibleViewController;
     }
+    if (!_previousVisibleViewController) {
+        _previousVisibleViewController = self.topViewController;
+        self.jz_previousVisibleViewController = _previousVisibleViewController;
+    }
+
     return _previousVisibleViewController;
 }
 
